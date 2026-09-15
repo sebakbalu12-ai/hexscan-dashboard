@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-ink-950 text-mist-100 font-sans antialiased;
+    background-image:
+      radial-gradient(1100px 620px at 78% -12%, rgba(37, 99, 235, 0.11), transparent 62%),
+      radial-gradient(760px 520px at 6% 8%, rgba(34, 197, 94, 0.05), transparent 60%);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: rgba(37, 99, 235, 0.35);
+  }
+
+  /* Slim scrollbars, matching the reference UI */
+  ::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.09);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.18);
+    background-clip: content-box;
+  }
+}
+
+@layer components {
+  /* ---------------------------- surfaces ---------------------------- */
+  .card {
+    @apply rounded-xl border border-line bg-ink-850/90 shadow-card backdrop-blur-sm;
+  }
+
+  .card-hover {
+    @apply transition-colors duration-150 hover:border-line-strong hover:bg-ink-800/90;
+  }
+
+  .panel {
+    @apply rounded-lg border border-line bg-ink-900/70;
+  }
+
+  /* ------------------------------ text ------------------------------ */
+  .label-xs {
+    @apply text-2xs font-semibold uppercase tracking-[0.14em] text-mist-400;
+  }
+
+  .kbd {
+    @apply rounded border border-line bg-ink-800 px-1.5 py-0.5 font-mono text-2xs text-mist-300;
+  }
+
+  /* ---------------------------- controls ---------------------------- */
+  .btn {
+    @apply inline-flex select-none items-center justify-center gap-2 rounded-lg px-3.5 py-2 text-sm font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 disabled:cursor-not-allowed disabled:opacity-45;
+  }
+
+  .btn-primary {
+    @apply bg-accent text-white shadow-[0_10px_30px_-14px_rgba(37,99,235,0.95)] hover:bg-accent-soft disabled:shadow-none;
+  }
+
+  .btn-ghost {
+    @apply border border-line bg-white/[0.02] text-mist-200 hover:border-line-strong hover:bg-white/[0.05];
+  }
+
+  .btn-subtle {
+    @apply bg-white/[0.04] text-mist-200 hover:bg-white/[0.08];
+  }
+
+  .btn-danger {
+    @apply border border-negative/25 bg-negative/10 text-negative hover:bg-negative/20;
+  }
+
+  .input {
+    @apply w-full rounded-lg border border-line bg-ink-900 px-3 py-2.5 text-sm text-mist-100 placeholder:text-mist-500 transition-colors focus:border-accent/55 focus:outline-none focus:ring-1 focus:ring-accent/35;
+  }
+
+  .select {
+    @apply cursor-pointer appearance-none rounded-lg border border-line bg-ink-900 py-2 pl-3 pr-8 text-sm text-mist-200 transition-colors hover:border-line-strong focus:border-accent/50 focus:outline-none;
+    /* Chevron rendered as a data URL (kept out of @apply: the inline SVG breaks Tailwind's parser). */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23767c83' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 16px;
+  }
+
+  /* ----------------------------- effects ----------------------------- */
+  .glow-border {
+    @apply border border-accent/30 shadow-glow;
+  }
+
+  .grid-lines {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+    background-size: 34px 34px;
+  }
+
+  .divider {
+    @apply h-px w-full bg-line;
+  }
+}
